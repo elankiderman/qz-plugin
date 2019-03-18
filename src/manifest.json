@@ -1,0 +1,21 @@
+{
+  "name" : "QZ Plugin",
+  "compatibleVersion": 3,
+  "bundleVersion": 1,
+  "icon": "icon.png",
+  "version": "1.1",
+  "commands": [
+    {
+      "name": "invert",
+      "shortcut" : "command shift y",
+      "identifier": "qz-plugin.invert-identifier",
+      "script": "./invert.js"
+    }
+  ],
+  "menu": {
+    "title": "qz-plugin",
+    "items": [
+      "qz-plugin.invert-identifier"
+    ]
+  }
+}

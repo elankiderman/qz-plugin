@@ -1,0 +1,28 @@
+{
+  "name": "qz-plugin",
+  "version": "0.1.0",
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/npm/cli.git"
+  }
+  "engines": {
+    "sketch": ">=3.0"
+  },
+  "skpm": {
+    "name": "qz-plugin",
+    "manifest": "src/manifest.json",
+    "main": "qz-plugin.sketchplugin",
+    "assets": [
+      "assets/**/*"
+    ]
+  },
+  "scripts": {
+    "build": "skpm-build",
+    "watch": "skpm-build --watch",
+    "start": "skpm-build --watch --run",
+    "postinstall": "npm run build && skpm-link"
+  },
+  "devDependencies": {
+    "@skpm/builder": "^0.5.11"
+  },
+}
