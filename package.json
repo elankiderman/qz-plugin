@@ -1,12 +1,12 @@
 {
   "name": "qz-plugin",
   "version": "0.1.0",
-  "repository": {
-    "type" : "git",
-    "url" : "https://github.com/npm/cli.git"
-  }
   "engines": {
     "sketch": ">=3.0"
+  },
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/elankiderman/qz-plugin.git"
   },
   "skpm": {
     "name": "qz-plugin",
@@ -24,5 +24,5 @@
   },
   "devDependencies": {
     "@skpm/builder": "^0.5.11"
-  },
+  }
 }

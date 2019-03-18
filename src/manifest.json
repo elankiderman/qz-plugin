@@ -1,5 +1,6 @@
 {
   "name" : "QZ Plugin",
+  "description":"internal tool for qz",
   "compatibleVersion": 3,
   "bundleVersion": 1,
   "icon": "icon.png",
