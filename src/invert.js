@@ -5,7 +5,11 @@ const colorKey = {
     '#000000': '#ffffff',
     '#ffffff': '#000000',
     '#333333': '#f9f9f9',
-    '#f9f9f9': '#333333'
+    '#f9f9f9': '#333333',
+    '#bebebe': '#777777',
+    '7777777': '#bebebe',
+    '#4c4c4c': '#e2e2e2',
+    'e2e2e2': '#4c4c4c'
 };
 const document = sketch.getSelectedDocument();
 // documentation: https://developer.sketchapp.com/reference/api/
