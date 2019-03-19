@@ -16,5 +16,12 @@ To use, select one or multiple layers, artboards, or symbol masters. Press `comm
 - e2e2e2 / #4c4c4c
 - swaps out the word `light` in symbol names for `dark`, and vv., if such a symbol exists.
 
+## Supported swap types
+- fills
+- borders
+- type color
+- symbols (by name)
+- artboard background
+
 
 
