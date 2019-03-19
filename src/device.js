@@ -28,7 +28,7 @@ function iterateLayers(selectedLayers) {
       swapText(layer);
     }
     else {
-      sketch.UI.message('not a symbol')
+      sketch.UI.message('not a symbol or text with style')
     }
 
   })
