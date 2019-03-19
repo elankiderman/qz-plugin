@@ -13,7 +13,7 @@ export default function() {
   const selectedCount = selectedLayers.length;
 
   if (selectedCount === 0) {
-    sketch.UI.message('No layers are selected')
+    sketch.UI.message('No layers are selected.')
   } else {
     iterateLayers(selectedLayers);
   }
