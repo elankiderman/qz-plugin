@@ -124,7 +124,7 @@ function swapText(layer) {
       layer.style = nextStyle.style;
 
 
-      sketch.UI.message('📱 ' + nextStyle)
+      sketch.UI.message('📱 ' + nextName)
 
 
       break;
