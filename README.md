@@ -4,7 +4,7 @@ This is an internal plugin for use at Quartz. It allows for inverting layer or a
 
 ## Usage
 
-To install, double click the `.sketchplugin` file, or move it to your plugins folder.
+To install, download the latest [release](https://github.com/elankiderman/qz-plugin/releases). Double click the `.sketchplugin` file, or move it to your plugins folder.
 
 To use, select one or multiple layers, artboards, or symbol masters. Press `command` + `shift` + `y` to invert.
 
