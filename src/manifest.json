@@ -8,15 +8,22 @@
   "commands": [
     {
       "name": "invert",
-      "shortcut" : "command shift y",
+      "shortcut" : "control option i",
       "identifier": "qz-plugin.invert-identifier",
       "script": "./invert.js"
+    },
+    {
+      "name": "toggle device",
+      "shortcut" : "control option d",
+      "identifier": "qz-plugin.device-identifier",
+      "script": "./device.js"
     }
   ],
   "menu": {
     "title": "qz-plugin",
     "items": [
-      "qz-plugin.invert-identifier"
+      "qz-plugin.invert-identifier",
+      "qz-plugin.device-identifier"
     ]
   }
 }
