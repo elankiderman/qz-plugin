@@ -1,7 +1,8 @@
 import sketch from 'sketch'
 const Style = sketch.Style
 const symbolMaster = sketch.symbolMaster
-const deviceKey = ['desktop (2000)', 'desktop (1440)', 'tablet', 'mobile']
+const symbolDeviceKey = ['desktop (2000)', 'desktop (1440)', 'tablet', 'mobile'];
+const textDeviceKey = ['desktop (1200)', 'desktop (1024)', 'tablet (768)', 'mobile']
 
 const document = sketch.getSelectedDocument();
 // documentation: https://developer.sketchapp.com/reference/api/
@@ -23,6 +24,9 @@ function iterateLayers(selectedLayers) {
     if (layer.type == 'SymbolInstance') {
       swapSymbol(layer);
     }
+    else if(layer.type == 'Text') {
+      swapText(layer);
+    }
     else {
       sketch.UI.message('not a symbol')
     }
@@ -31,13 +35,15 @@ function iterateLayers(selectedLayers) {
 }
 
 function swapSymbol(layer) {
+  var key = symbolDeviceKey;
+
   var master = layer.master;
   var name = master.name;
 
-  for(var i = 0; i<deviceKey.length;i++) {
-    var currentDevice = deviceKey[i];
+  for(var i = 0; i<key.length;i++) {
+    var currentDevice = key[i];
 
-    var nextDevice = deviceKey[(i+1)%deviceKey.length];
+    var nextDevice = key[(i+1)%key.length];
     if(name.indexOf(currentDevice) != -1) {
       console.log("currentDevice: " + currentDevice);
       console.log("nextDevice: " + nextDevice);
@@ -77,8 +83,51 @@ function swapSymbol(layer) {
       break;
     }
   }
+}
+
+function swapText(layer) {
+  var key = textDeviceKey;
+  var styleId = layer.sharedStyleId;
+  var master = document.getSharedTextStyleWithID(styleId);
+
+  var name = master.name;
+  console.log(name);
 
 
+  for(var i = 0; i<key.length;i++) {
+    var currentDevice = key[i];
+
+    var nextDevice = key[(i+1)%key.length];
+    if(name.indexOf(currentDevice) != -1) {
+
+      var nextName = name.replace(currentDevice, nextDevice)
+
+      var originLibrary = master.getLibrary();
+      if(originLibrary) {
+        var styleReferences = originLibrary.getImportableTextStyleReferencesForDocument(document);
 
 
+        var nextStyles = styleReferences.filter(style => {
+          return style.name === nextName;
+        })
+
+      var nextStyle = nextStyles[0].import();
+
+
+      }
+
+      console.log(layer.style)
+      console.log(nextStyle)
+
+
+      layer.sharedStyle = nextStyle;
+      layer.style = nextStyle.style;
+
+
+      sketch.UI.message('📱 ' + nextStyle)
+
+
+      break;
+    }
+  }
 }
