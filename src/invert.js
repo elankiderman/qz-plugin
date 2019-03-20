@@ -39,6 +39,7 @@ function iterateLayers(selectedLayers) {
       swapSymbol(layer);
     }
     else if (layer.type == 'Group') {
+      console.log('group')
       iterateLayers(layer.layers);
     }
     else {
@@ -71,6 +72,7 @@ function swapSymbol(layer) {
 
   if(name.indexOf("dark") != -1 || name.indexOf("light") != -1) {
 
+
     var reverseName = (name.indexOf("light") != -1) ? name.replace("light", "dark") : name.replace("dark","light");
 
 
@@ -83,9 +85,10 @@ function swapSymbol(layer) {
         return symbol.name === reverseName;
       })
 
-    var newMaster = reverseSymbols[0].import();
-
-    }
+        if(reverseSymbols.length > 0) {
+          var newMaster = reverseSymbols[0].import();
+        }
+      }
     else {
       var symbolReferences = document.getSymbols();
       var reverseSymbols = symbolReferences.filter(symbol => {
@@ -94,9 +97,9 @@ function swapSymbol(layer) {
       var newMaster = reverseSymbols[0];
     }
 
-
-  layer.master = newMaster;
-
+    if(reverseSymbols.length > 0) {
+      layer.master = newMaster;
+    }
 
   }
 
