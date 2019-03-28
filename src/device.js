@@ -111,23 +111,29 @@ function swapText(layer) {
           return style.name === nextName;
         })
 
-      var nextStyle = nextStyles[0].import();
+      var nextStyle = nextStyles[0]
 
 
       }
 
-      console.log(layer.style)
-      console.log(nextStyle)
+      //console.log(layer.style)
+      //console.log(nextStyle)
 
 
-      layer.sharedStyle = nextStyle;
-      layer.style = nextStyle.style;
 
-
-      sketch.UI.message('📱 ' + nextName)
-
+      applyStyle(layer,nextStyle)
 
       break;
     }
   }
+}
+
+function applyStyle(layer,newStyle) {
+  //takes layer and importable (but not yet imported) shared text style
+  layer.sharedStyle = newStyle.import();
+  layer.style.fontSize = newStyle.import().style.fontSize;
+  layer.style.lineHeight = newStyle.import().style.lineHeight;
+
+
+  sketch.UI.message('📱 ' + newStyle.name)
 }

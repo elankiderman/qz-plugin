@@ -7,22 +7,36 @@
   "commands": [
     {
       "name": "invert",
-      "shortcut" : "control option i",
+      "shortcut" : "control shift i",
       "identifier": "qz-plugin.invert-identifier",
       "script": "./invert.js"
     },
     {
       "name": "toggle device",
-      "shortcut" : "control option d",
+      "shortcut" : "control shift d",
       "identifier": "qz-plugin.device-identifier",
       "script": "./device.js"
+    },
+    {
+      "name": "toggle text size",
+      "shortcut" : "control shift s",
+      "identifier": "qz-plugin.type-identifier",
+      "script": "./typeStyle.js"
+    },
+    {
+      "name": "apply best fit text style",
+      "shortcut" : "control shift n",
+      "identifier": "qz-plugin.nearest-style-identifier",
+      "script": "./nearestStyle.js"
     }
   ],
   "menu": {
     "title": "qz-plugin",
     "items": [
       "qz-plugin.invert-identifier",
-      "qz-plugin.device-identifier"
+      "qz-plugin.device-identifier",
+      "qz-plugin.type-identifier",
+      "qz-plugin.nearest-style-identifier"
     ]
   }
 }
