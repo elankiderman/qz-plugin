@@ -7,11 +7,11 @@ const colorKey = {
   '#171922': '#f9f9f9',
   '#f9f9f9': '#171922',
   '#bebebe': '#777777',
-  '#7777777': '#bebebe',
+  '#777777': '#bebebe',
   '#4c4c4c': '#e2e2e2',
   '#e2e2e2': '#4c4c4c',
-  '#76CBFF': '#168DD9',
-  '#168DD9': '#76CBFF'
+  '#76cbff': '#168dd9',
+  '#168dd9': '#76cbff'
 };
 const document = sketch.getSelectedDocument();
 // documentation: https://developer.sketchapp.com/reference/api/
@@ -52,7 +52,7 @@ function iterateLayers(selectedLayers) {
 
   })
 
-  sketch.UI.message('🔀 inverted colors')
+  //sketch.UI.message('🔀 inverted colors')
 }
 
 function swapArtboard(artboard) {
@@ -112,6 +112,7 @@ function swapFill(layer) {
   var fills = layer.style.fills;
 
   for (var i = 0; i < fills.length; i++) {
+    sketch.UI.message(fills[i].color)
     var newColor = colorSwap(fills[i].color);
 
     if(newColor) {
@@ -146,6 +147,7 @@ function swapText(layer) {
 }
 
 function splitColor(rgba) {
+
   return {
       'rgb': rgba.substr(0, 7),
       'alpha': rgba.substr(7),
@@ -153,19 +155,26 @@ function splitColor(rgba) {
 }
 
 function colorSwap(oldColor) {
+  console.log(oldColor)
+
 
   var oldRgba = splitColor(oldColor);
+
 
   var oldRgb = oldRgba.rgb;
   var alpha = oldRgba.alpha;
 
+
+
   var newRgb = colorKey[oldRgb];
 
   if(newRgb) {
+
     return newRgb + alpha;
   }
 
   else {
+
     return undefined;
   }
 
