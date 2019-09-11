@@ -28,6 +28,12 @@
       "shortcut" : "control shift n",
       "identifier": "qz-plugin.nearest-style-identifier",
       "script": "./nearestStyle.js"
+    },
+    {
+      "name": "swap operating system",
+      "shortcut" : "control shift o",
+      "identifier": "qz-plugin.os-identifier",
+      "script": "./swapOS.js"
     }
   ],
   "menu": {
@@ -36,7 +42,8 @@
       "qz-plugin.invert-identifier",
       "qz-plugin.device-identifier",
       "qz-plugin.type-identifier",
-      "qz-plugin.nearest-style-identifier"
+      "qz-plugin.nearest-style-identifier",
+      "qz-plugin.os-identifier"
     ]
   }
 }
