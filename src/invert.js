@@ -1,5 +1,6 @@
 import sketch from 'sketch'
 const Style = sketch.Style
+var Library = require('sketch/dom').Library
 const symbolMaster = sketch.symbolMaster
 const colorKey = {
   '#000000': '#ffffff',
@@ -13,10 +14,18 @@ const colorKey = {
   '#76cbff': '#168dd9',
   '#168dd9': '#76cbff'
 };
+const styleKey = {
+  'black': 'white',
+  'white': 'black',
+  'light mode': 'dark mode',
+  'dark mode': 'light mode'
+};
+var library;
 const document = sketch.getSelectedDocument();
 // documentation: https://developer.sketchapp.com/reference/api/
 
 export default function() {
+  library = getLibrary();
   const doc = sketch.getSelectedDocument()
   const selectedLayers = doc.selectedLayers;
   const selectedCount = selectedLayers.length;
@@ -48,6 +57,7 @@ function iterateLayers(selectedLayers) {
       console.log(layer.type);
       swapFill(layer);
       swapBorder(layer);
+      swapStyle(layer);
     }
 
   })
@@ -108,6 +118,25 @@ function swapSymbol(layer) {
 
 }
 
+function swapStyle(layer) {
+  if(layer.sharedStyle) {
+    var styleReferences = library.getImportableLayerStyleReferencesForDocument(document);
+    var currentStyleName = layer.sharedStyle.name;
+    var oppositeStyleName;
+
+    for(var key in styleKey) {
+      if(currentStyleName.includes(key)) {
+        oppositeStyleName = currentStyleName.replace(key,styleKey[key]);
+
+        var matchingStyles = styleReferences.filter(style => {
+          return style.import().name === oppositeStyleName;
+        })
+        layer.sharedStyle = matchingStyles[0];
+      }
+    }
+  }
+}
+
 function swapFill(layer) {
   var fills = layer.style.fills;
 
@@ -155,7 +184,6 @@ function splitColor(rgba) {
 }
 
 function colorSwap(oldColor) {
-  console.log(oldColor)
 
 
   var oldRgba = splitColor(oldColor);
@@ -179,4 +207,16 @@ function colorSwap(oldColor) {
   }
 
 
+}
+
+function getLibrary() {
+  //get master library
+  var libraries = Library.getLibraries()
+  var thisLibrary;
+  for(var i = 0; i < libraries.length; i++) {
+    if(libraries[i].name.indexOf("Quartz library (Master") != -1) {
+      thisLibrary = libraries[i]
+    }
+  }
+  return(thisLibrary);
 }
